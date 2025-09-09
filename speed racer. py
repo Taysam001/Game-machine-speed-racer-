@@ -23,7 +23,7 @@ class Car:
                  )
         if 0 < self.speed <= 180:
            print(f"car is running at {self.speed}km ")
-        if 0 < self.speed > 180:
+        if self.speed > 180:
            print("car is running at max speed")
         
 
