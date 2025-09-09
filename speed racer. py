@@ -1,0 +1,214 @@
+
+Available_vehicles = ["porsche", "ferari", "mclaren","bmw", "audi", "mazda",
+                      "ford", "dodge", "chevrolet", "alpine","lotus", "mg"]
+Available_tracks = ["desert", "highway", "city", "suburb"]
+Available_colors = []
+
+class Car:
+    speed = 10
+    color = "neutral"
+    name = "vehicle"
+    
+    def start(self):
+        print(f"Car is running at {self.speed}km ")
+
+    def speedup(self):
+        self.speed += 10
+        if self.speed < 0:
+           print("""
+             accelerating....
+             try again......
+             keep clicking on "S" until ar starts moving
+                """
+                 )
+        if 0 < self.speed <= 180:
+           print(f"car is running at {self.speed}km ")
+        if 0 < self.speed > 180:
+           print("car is running at max speed")
+        
+
+    def slowdown(self):
+        self.speed -= 10
+        if 180 >= self.speed > 0:
+           print(f"car is running at {self.speed}km ")
+        if self.speed <= 0:
+           print(f"car stopped moving 0km/hr ")
+           control()
+        if self.speed > 180:
+           print("""
+                keep pressing "X" to run below max speed
+                 """) 
+        
+    def stop(self):
+        print("car stopped")
+
+    
+def about():
+    print("""developed by :TAIWO BOLARINWA SAMUEL
+
+             COPYRIGHT 2025
+          """)
+
+
+def welcome():
+    print("welcome to speedracer")
+
+
+def selectcar():
+    for i in Available_vehicles:
+        print(f"[{i.upper():>2}]")
+       
+    caR = str(input("""
+     select the car you want to drive from the available options above :
+             Type below
+                """
+                ))
+    if caR.lower() not in Available_vehicles:
+        print("""
+             not recognized
+             choose from available options
+             """
+            )
+        selectcar()
+    global car
+    car = Car()
+    car.name = caR.upper()
+    print(f"You selected {car.name} ")
+
+
+
+def selecttrack():
+    for i in Available_tracks:
+        print()
+        print(f"[{i.upper():>2}]")
+    Trck = str(input("""
+        choose the track on which you want to race from options above:
+           Type below
+                      """
+                      ))
+    if Trck.lower() not in Available_tracks:
+        print("""
+             not recognized
+             choose from available options
+             """
+            )
+        selecttrack()
+    track = Trck.upper()
+    print(f"""Checking {track}
+             ....
+              ...........
+            {track} Selected !
+          """)
+
+    
+def selectcolor():
+    color = input("Type in a desired paint for your car: ")
+    car.color = color
+    print(f" {car.name} successfully painted {car.color} ")
+    
+
+
+def decide():
+    decision = input("""
+                 press 1 to start race
+                 press 2 to reselect car
+                 press 3 to exit game 
+                 """
+                 )
+    if decision == "1":
+       car.start()
+    elif decision == "2":
+       selectcar()
+       decide()
+    elif decision == "3":
+        proceeed()
+    else:
+       print("input not recognized")
+       decide()
+    
+
+ 
+def control():
+    driving_control = input("""
+      Click on "S" to accelerate
+      Click on "X" to slow down
+      Click on "M" to return to main menu
+      """
+      )
+    if driving_control.lower() == "s":
+       car.speedup()
+    if driving_control.lower() == "x":
+       car.slowdown()
+    if driving_control.lower() == "m":
+       confirm = input("""
+          Are you sure you want to quit this race and return to main menu ?
+                     (YES)     (NO)
+                      """)
+       if confirm.lower() ==   "yes":
+           C = False
+           startpg()
+       else:
+           print()
+           control()
+    else:
+        print()
+        control()
+         
+        
+    
+    
+
+def mainmenu():
+   print()
+   selectcar()
+   selectcolor()
+   selecttrack()
+   decide()
+   C = True
+   while C == True:
+      control()
+      
+          
+         
+
+   
+def proceeed():
+    welcome()
+    cont = input("""
+               Press "O" to continue
+                 """)
+    if cont.lower() == "o":
+       startpg()
+    else:
+        startpg()
+       
+
+def startpg():
+    startpage = input("""
+                         Press "S" to play game
+                         Press "i" for info
+                         """
+                         )
+    if startpage.lower() == "s":
+       print("intializing..>>")
+    if startpage.lower() == "i":
+       about()
+       returnhome = input("""
+             press "M" to return to mainmenu:
+                          """)
+       if returnhome.lower() == "m":
+          startpg()
+       else:
+          startpg()
+    mainmenu()
+   
+        
+
+    
+      
+      
+
+proceeed()
+startpg()
+#mainmenu()
+
