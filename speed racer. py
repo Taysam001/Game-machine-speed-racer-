@@ -70,10 +70,11 @@ def selectcar():
              """
             )
         selectcar()
-    global car
-    car = Car()
-    car.name = caR.upper()
-    print(f"You selected {car.name} ")
+    if caR.lower() not in Available_vehicles:
+       global car
+       car = Car()
+       car.name = caR.upper()
+       print(f"You selected {car.name} ")
 
 
 
